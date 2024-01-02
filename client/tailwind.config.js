@@ -45,6 +45,8 @@ export default {
     colors: {
       transparent: "transparent",
       current: "currentColor",
+      white: "white",
+      black: "black",
       primary: {
         500: "#DFDEF9",
         600: "#2d56a2",

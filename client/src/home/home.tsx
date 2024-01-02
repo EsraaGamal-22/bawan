@@ -1,13 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import { MoreBtn } from "../../shared/components/more-btn/moreBtn";
+import { MoreBtn } from "../shared/components/more-btn/more-btn";
 export const Home = () => {
   return (
     <>
       <Helmet>
         <title>الرئيسية</title>
+        {/* BS */}
         <meta name="description" content="home page for app" />
       </Helmet>
       {/*intro to company*/}
+      {/* BS */}
       <div className="introSec w-[113.0rem] h-[54.612rem] mr-[12.7rem] ml-[18.3rem] mt-[7.4rem] lg:flex justify-between align-middle">
         <div className="introSec__img w-[44.804rem] h-[54.612rem]">
           <img
@@ -25,7 +27,7 @@ export const Home = () => {
             السكنية والتجارية المميزة بمفهوم جديد للبناء العصري ونمط الحياة الذي
             يستحقه عملائنا، حيث نقدم في بوان خدمات متكاملة على مختلف الأصعدة.
           </p>
-          <MoreBtn url={"/about"} />
+          <MoreBtn url="/about" />
         </div>
       </div>
     </>

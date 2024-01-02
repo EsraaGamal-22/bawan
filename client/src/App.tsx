@@ -36,10 +36,6 @@ function App() {
 
   return (
     <>
-      {/* <div>
-        <h1>hi esraa</h1>
-        <div>section content</div>
-      </div> */}
       <div className="App">
         <RouterProvider router={router} />
       </div>
