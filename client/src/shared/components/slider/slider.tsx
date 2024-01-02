@@ -6,9 +6,8 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/navigation";
 // import required modules
-import { Autoplay, EffectCreative, Navigation } from "swiper/modules";
 import { Outlet } from "react-router-dom";
-import { Navbar } from "../navbar/navbar";
+import { Autoplay, EffectCreative, Navigation } from "swiper/modules";
 
 export const Slider = () => {
   return (
@@ -16,11 +15,11 @@ export const Slider = () => {
       {/* <Navbar /> */}
       {/**navigation */}
       <Swiper
-        spaceBetween={30}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
+        // spaceBetween={30}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // }}
         dir="rtl"
         navigation={true}
         effect={"creative"}
@@ -36,13 +35,14 @@ export const Slider = () => {
         modules={[Autoplay, Navigation, EffectCreative]}
         className="mySwiper w-full h-dvh"
       >
-        <SwiperSlide className="relative d-flex align-middle justify-self-center text-center">
+        <SwiperSlide className="relative d-flex align-middle justify-self-center text-center after:w-full after:h-full after:block after:absolute after:top-0 after:z-[1] after:bg-black/55">
           <img
             className="relative w-full h-full object-cover"
             src="/public/assets/slide1.png"
             alt="img-slider"
           />
-          <div className="lg:w-[51.9rem] absolute top-[42.7rem] right-9 lg:right-[18.1rem] lg:bottom[28.9rem] mx-auto">
+          {/* BS */}
+          <div className="lg:w-[51.9rem] absolute top-[42.7rem] right-9 lg:right-[18.1rem] lg:bottom[28.9rem] mx-auto z-[2]">
             <h1 className=" h-[8rem] text-primary-500 font-bold text-3 sm:text-5 md-text-[4rem] lg:text-[8rem] leading-[8rem]">
               مجتمع عمراني
             </h1>
@@ -83,6 +83,7 @@ export const Slider = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+      {/* BS */}
       <Outlet />
     </>
   );
