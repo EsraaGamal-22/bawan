@@ -1,18 +1,5 @@
-// import { useQuery } from "@tanstack/react-query";
-// import { request } from "./api/axiox-util";
-// import { StrapiWrapper } from "./api/models/strapi-wrapper";
-// import { StrapiError } from "./api/models/strapi-error";
-// import { AxiosResponse } from "axios";
-// import { Slider } from "./shared/components/slider/slider";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routing/allRoutes";
-
-type Blogger = {
-  id: number;
-  attributes: {
-    name: string;
-  };
-};
 
 function App() {
   // const {
