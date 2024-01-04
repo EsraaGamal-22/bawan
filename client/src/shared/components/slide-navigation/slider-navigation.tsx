@@ -50,7 +50,7 @@ export const SliderNavigation = () => {
                   alt="img-slider"
                 />
 
-                <div className="lg:w-[51.9rem] absolute top-[42.7rem] right-9 lg:right-[19.1rem] lg:bottom[29.0rem] z-[2]">
+                <div className="lg:w-[51.9rem] absolute right-9 lg:right-[19.1rem] lg:bottom-[20rem] z-[2]">
                   <h1 className=" h-[9rem] text-white font-bold text-3  lg:text-4.8 leading-[8rem]">
                     {slide.title}
                   </h1>

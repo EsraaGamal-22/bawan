@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type MoreBtnProps = {
   url: string;
@@ -11,7 +11,7 @@ export const MoreBtn = ({ url }: MoreBtnProps) => {
   };
   return (
     <button
-      className="w-max h-5.3 mr-auto pr-2.5 pl-3.2 py-1.6 font-normal text-1.2 lg:text-1.6 bg-white text-primary-900 flex justify-between align-middle border-[0.2rem] border-solid rounded-5 border-primary-800"
+      className="w-max h-5.3 m-auto lg:float-end pr-2.5 pl-3.2 py-1.6 font-normal text-1.2 lg:text-1.6 bg-white text-primary-900 flex justify-between align-middle border-[0.2rem] border-solid rounded-5 border-primary-800"
       onClick={() => redirectToPage(url)}
     >
       <span className="h-2.1 block w-max font-bold">اكتشف المزيد</span>
