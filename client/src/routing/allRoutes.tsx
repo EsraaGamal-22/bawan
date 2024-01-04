@@ -1,19 +1,27 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../home/home";
-import { Slider } from "../shared/components/slider/slider";
+import { About } from "../about/about";
+import { Services } from "../services/services";
+import { Projects } from "../projects/projects";
 
-{/* BS */}
+{
+  /* BS */
+}
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Slider />,
-
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-
-    ],
+    element: <Home />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/services",
+    element: <Services />,
+  },
+  {
+    path: "/projects",
+    element: <Projects />,
   },
 ]);

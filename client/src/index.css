@@ -15,15 +15,4 @@ body {
   padding: 0;
 }
 
- {
-  /* BS */
-}
-.introSec__info--title::after {
-  position: absolute;
-  top: 100%;
-  right: 0px;
-  content: "";
-  width: 30.134rem;
-  height: 5px;
-  background-image: linear-gradient(to right, #008aa6, #000000);
-}
+
