@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { pageActive } from "./nabar.module";
-import { navbarInfo } from "./navbar-constants";
+import { useState } from "react"
+import { pageActive } from "./nabar.module"
+import { navbarInfo } from "./navbar-constants"
 
 export const Navbar = ({ pageName }: pageActive) => {
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false)
 
   const handleToggle = () => {
-    setToggleMenu(!toggleMenu);
-  };
+    setToggleMenu(!toggleMenu)
+  }
   return (
     <>
       <nav
         className="
     flex flex-wrap
+    md:flex-row-reverse
     items-center
     justify-between
     w-[90%]
@@ -40,6 +41,11 @@ export const Navbar = ({ pageName }: pageActive) => {
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
+        <div>
+          <a href="/">
+            <img src="/assets/logo.png" alt="imag-logo" />
+          </a>
+        </div>
         <div
           className={
             toggleMenu ? "hidden" : "w-full md:flex md:items-center md:w-auto"
@@ -71,16 +77,11 @@ export const Navbar = ({ pageName }: pageActive) => {
                     </a>
                   </li>
                 </>
-              );
+              )
             })}
           </ul>
         </div>
-        <div>
-          <a href="/">
-            <img src="/assets/logo.png" alt="imag-logo" />
-          </a>
-        </div>
       </nav>
     </>
-  );
-};
+  )
+}
