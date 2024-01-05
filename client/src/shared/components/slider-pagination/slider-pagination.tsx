@@ -19,7 +19,7 @@ export const SliderPagination = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        slidesPerView={5}
+        slidesPerView={1}
         breakpoints={{
           320: {
             slidesPerView: 1,
@@ -43,12 +43,12 @@ export const SliderPagination = () => {
           return (
             <>
               {" "}
-              <SwiperSlide key={idx} className="mb-4 mt-5">
+              <SwiperSlide key={idx} className="mb-4 mt-2 lg:mt-5">
                 <div className="flex flex-col justify-center items-center">
-                  <div className="w-5.5 h-[7.0rem]">
+                  <div className="w-max-5.5">
                     <img src={slide.image} alt="img-slide" />
                   </div>
-                  <p className="w-max text-2.4 font-normal text-primary-900">
+                  <p className="text-1.4 lg:text-2.4 font-normal text-primary-900 leading-[6rem]">
                     {slide.title}
                   </p>
                 </div>
