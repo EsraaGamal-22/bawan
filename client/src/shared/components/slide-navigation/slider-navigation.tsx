@@ -10,8 +10,9 @@ import "swiper/css/navigation";
 import { Autoplay, EffectCreative, Navigation } from "swiper/modules";
 import { sliderInfo } from "./slider-navigation-contants";
 import { Navbar } from "../navbar/navbar";
+import { pageActive } from "../navbar/nabar.module";
 
-export const SliderNavigation = () => {
+export const SliderNavigation = ({ pageName }: pageActive) => {
   sliderInfo;
   return (
     <>
@@ -35,7 +36,7 @@ export const SliderNavigation = () => {
           },
         }}
         modules={[Autoplay, Navigation, EffectCreative]}
-        className="mySwiper w-full h-dvh"
+        className="mySwiper w-full h-dvh mb-[12.0rem]"
       >
         {sliderInfo.map((slide, idx) => {
           return (
@@ -49,15 +50,15 @@ export const SliderNavigation = () => {
                   src={slide.img}
                   alt="img-slider"
                 />
-
-                <div className="lg:w-[51.9rem] absolute right-9 lg:right-[19.1rem] lg:bottom-[20rem] z-[2]">
-                  <h1 className=" h-[9rem] text-white font-bold text-3  lg:text-4.8 leading-[8rem]">
+                <div className="lg:w-[51.9rem] absolute right-[4rem] bottom-[16rem] lg:right-[19.1rem] lg:bottom-[20rem] z-[2]">
+                  <h1 className="text-white font-bold text-3 lg:text-4.8 leading-[8rem]">
                     {slide.title}
                   </h1>
-                  <p className="h-[2.8rem] text-white text-opacity-60 font-normal text-2 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">
+                  <p className="text-white text-opacity-60 font-normal text-2 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">
                     {slide.paragraph}
                   </p>
                 </div>
+                <Navbar pageName="الرئيسية" />
               </SwiperSlide>
             </>
           );

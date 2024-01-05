@@ -4,34 +4,36 @@ import { SocialIcon } from "./social-icon/social-icon";
 export const Footer = () => {
   return (
     <>
-      <div className="w-full h-[62.2rem] bg-[url(/assets/footerBack.png)] bg-no-repeat pt-[10.9rem] pr-[18.1rem] pl-[18.3rem] relative z-[1]">
-        <div className="w-[107.4rem] flex justify-between mb-[12.7rem]">
+      <div className="w-full mt-[7.4rem] bg-[url(/assets/footerBack.png)] bg-no-repeat bg-cover bg-center relative z-[1] pt-[10.9rem] max-h-fit">
+        <div className="w-[70%]  lg:grid grid-cols-2 gap-20 block mx-auto mb-[12.7rem]">
           <div className="flex flex-col justify-center items-center">
             <img src="/assets/logo.png" alt="logo-img" />
-            <h1 className="w-[30.4rem] text-white text-4 font-normal leading-[7.5rem] text-center">
+            <h1 className=" text-white text-3 lg:text-4 font-bold leading-[7.5rem] text-center">
               شركه بوان الرحاب العقاريه
             </h1>
           </div>
-          <div className="w-[43.0rem] ">
-            <p className=" text-white opacity-80 text-2.4 font-normal">
+          <div className="text-center lg:text-start">
+            <p className=" text-white opacity-80 text-1.4 lg:text-2.4 font-normal">
               المملكه العربيه السعوديه 428 الرياض حي الملقا طريق انس بن مالك
             </p>
-            <p className=" text-white opacity-80 text-2.4 font-normal leading-[6rem] mb-3.2">
+            <p className=" text-white opacity-80 text-1.4 lg:text-2.4 font-normal leading-[6rem] mb-1 lg:mb-3.2">
               رقم الاتصال : 920019936
             </p>
-            <div className="w-[27.5rem] flex flex-row justify-between items-center">
+            <div className="w-[90%] sm:w-[55%] flex flex-row justify-between items-center mx-auto lg:mx-0">
               {footerLinks.map((link) => {
                 return <SocialIcon iconSrc={link.iconSrc} info={link.info} />;
               })}
             </div>
           </div>
         </div>
-        <div className="w-[67.8rem] flex justify-between items-center mx-auto mb-6">
+        <div className="flex flex-col lg:flex-row justify-between items-center mb-6 w-[95%] lg:w-[50%] mx-auto ">
           {contactDetail.map((contact) => {
             return (
               <>
-                <div className="flex flex-row justify-between items-center">
-                  <p className="text-white">{contact.info}</p>
+                <div className="flex flex-row justify-between items-center mb-2 lg:mb-0">
+                  <p className="text-white text-1.2 lg:text-1.4">
+                    {contact.info}
+                  </p>
                   <img
                     src={contact.iconSrc}
                     alt="icon-contact"
@@ -43,7 +45,7 @@ export const Footer = () => {
           })}
         </div>
         <hr className="text-white opacity-10" />
-        <p className="w-fit text-white mx-auto my-4 font-normal">
+        <p className="w-fit text-white mx-auto py-4 font-normal text-1 lg:text-1.2">
           جميع الحقوق محفوظة لشركة ©بوان الرحاب العقارية 2022
         </p>
         <img

@@ -1,26 +1,29 @@
-export const Navbar = () => {
+import { useState } from "react";
+import { pageActive } from "./nabar.module";
+import { navbarInfo } from "./navbar-constants";
+
+export const Navbar = ({ pageName }: pageActive) => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+
+  const handleToggle = () => {
+    setToggleMenu(!toggleMenu);
+  };
   return (
     <>
-      {" "}
       <nav
         className="
     flex flex-wrap
     items-center
     justify-between
-    w-full
-    py-4
-    md:py-0
-    px-4
-    text-lg text-gray-700
-    bg-white
-  "
+    w-[90%]
+     text-white
+    bg-transparent
+    absolute
+    top-0
+    z-[3]
+    right-[50%]
+    translate-x-[50%]"
       >
-        <div>
-          <a href="#">
-            <img src="/assets/logo.png" alt="imag-logo" />
-          </a>
-        </div>
-
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="menu-button"
@@ -28,6 +31,7 @@ export const Navbar = () => {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          onClick={handleToggle}
         >
           <path
             stroke-linecap="round"
@@ -36,48 +40,45 @@ export const Navbar = () => {
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
-
         <div
-          className="hidden w-full md:flex md:items-center md:w-auto"
+          className={
+            toggleMenu ? "hidden" : "w-full md:flex md:items-center md:w-auto"
+          }
           id="menu"
         >
           <ul
             className="
         pt-4
-        text-base text-gray-700
+        text-1.4
+        lg:text-2.4
         md:flex
-        md:justify-between 
+        md:justify-between
         md:pt-0"
           >
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                الرئيسية
-              </a>
-            </li>
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                عن بوان{" "}
-              </a>
-            </li>
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                خدماتنا
-              </a>
-            </li>
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                مشاريعنا
-              </a>
-            </li>
-            <li>
-              <a
-                className="md:p-4 py-2 block hover:text-purple-400 text-purple-500"
-                href="#"
-              >
-                تواصل معنا
-              </a>
-            </li>
+            {navbarInfo.map((item) => {
+              return (
+                <>
+                  <li>
+                    <a
+                      className={
+                        item.name === pageName
+                          ? "md:px-2 md:py-1 md:mt-3 block border border-solid border-primary-900 rounded-5 bg-primary-900"
+                          : "md:p-4 py-2 block "
+                      }
+                      href={item.navLink}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                </>
+              );
+            })}
           </ul>
+        </div>
+        <div>
+          <a href="/">
+            <img src="/assets/logo.png" alt="imag-logo" />
+          </a>
         </div>
       </nav>
     </>
