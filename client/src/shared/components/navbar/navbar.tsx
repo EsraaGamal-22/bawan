@@ -1,13 +1,10 @@
-import { useState } from "react"
-import { pageActive } from "./nabar.module"
-import { navbarInfo } from "./navbar-constants"
+import { useState } from "react";
+import { pageActive } from "./nabar.module";
+import { navbarInfo } from "./navbar-constants";
 
 export const Navbar = ({ pageName }: pageActive) => {
-  const [toggleMenu, setToggleMenu] = useState(false)
-
-  const handleToggle = () => {
-    setToggleMenu(!toggleMenu)
-  }
+  const [isMenuShown, setIsMenuShown] = useState(false);
+  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
   return (
     <>
       <nav
@@ -16,7 +13,7 @@ export const Navbar = ({ pageName }: pageActive) => {
     md:flex-row-reverse
     items-center
     justify-between
-    w-[90%]
+   w-[90%]
      text-white
     bg-transparent
     absolute
@@ -25,14 +22,14 @@ export const Navbar = ({ pageName }: pageActive) => {
     right-[50%]
     translate-x-[50%]"
       >
+        {/* MENU */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          id="menu-button"
-          className="h-6 w-6 cursor-pointer md:hidden block"
+          onClick={toggleMenuHandler}
+          className="h-4 w-4 cursor-pointer pt-1 md:hidden block"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          onClick={handleToggle}
         >
           <path
             stroke-linecap="round"
@@ -41,14 +38,16 @@ export const Navbar = ({ pageName }: pageActive) => {
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
-        <div>
+        {/* LOGO */}
+        <div className="w-[10%] w-max-[9.8rem] pt-1 md:pt-0">
           <a href="/">
             <img src="/assets/logo.png" alt="imag-logo" />
           </a>
         </div>
+        {/* MENU  ITEMS */}
         <div
           className={
-            toggleMenu ? "hidden" : "w-full md:flex md:items-center md:w-auto"
+            isMenuShown ? "hidden" : "w-full md:flex md:items-center md:w-auto"
           }
           id="menu"
         >
@@ -77,11 +76,11 @@ export const Navbar = ({ pageName }: pageActive) => {
                     </a>
                   </li>
                 </>
-              )
+              );
             })}
           </ul>
         </div>
       </nav>
     </>
-  )
-}
+  );
+};
