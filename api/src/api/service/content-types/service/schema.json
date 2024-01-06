@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "projects",
+  "collectionName": "services",
   "info": {
-    "singularName": "project",
-    "pluralName": "projects",
-    "displayName": "project"
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "service"
   },
   "options": {
     "draftAndPublish": false
@@ -16,7 +16,7 @@
       "required": true,
       "unique": true
     },
-    "thumbnail": {
+    "icon": {
       "allowedTypes": [
         "images"
       ],
@@ -24,17 +24,9 @@
       "multiple": false,
       "required": true
     },
-    "images": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": true,
-      "required": true
-    },
     "description": {
-      "type": "text",
-      "required": false
+      "type": "string",
+      "required": true
     }
   }
 }
