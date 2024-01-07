@@ -13,10 +13,11 @@ import { SliderPagination } from "./slider-pagination/slider-pagination";
 import { Footer } from "../shared/components/footer/footer";
 import { ProjectInfo } from "./project-info/project-info";
 import { Navbar } from "../shared/components/navbar/navbar";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../context-app";
 
 export const Home = () => {
-  const [isMenuShown, setIsMenuShown] = useState(false);
+  const { isMenuShown, setIsMenuShown } = useContext(AppContext);
   const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
   return (
     <>

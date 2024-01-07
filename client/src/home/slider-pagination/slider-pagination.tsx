@@ -63,9 +63,6 @@ export const SliderPagination = () => {
         {partnerData &&
           partnerData.data.data.length > 0 &&
           partnerData.data.data.map((partner, idx) => {
-            {
-              console.log(partner.attributes.logo);
-            }
             return (
               <>
                 <SwiperSlide key={idx} className="mb-4 mt-2 lg:mt-5">
