@@ -9,12 +9,15 @@ import {
   successPartner,
 } from "./home.constants";
 import { SliderNavigation } from "../shared/components/slide-navigation/slider-navigation";
-import { SliderPagination } from "../shared/components/slider-pagination/slider-pagination";
+import { SliderPagination } from "./slider-pagination/slider-pagination";
 import { Footer } from "../shared/components/footer/footer";
-import { Navbar } from "../shared/components/navbar/navbar";
 import { ProjectInfo } from "./project-info/project-info";
+import { Navbar } from "../shared/components/navbar/navbar";
+import { useState } from "react";
 
 export const Home = () => {
+  const [isMenuShown, setIsMenuShown] = useState(false);
+  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
   return (
     <>
       <Helmet>
@@ -22,7 +25,12 @@ export const Home = () => {
         <meta name="description" content="الصفحة الرئيسبة للموقع " />
       </Helmet>
       {/* HEADER */}
-      <SliderNavigation pageName="الرئيسية" />
+      <SliderNavigation isMenuShown={isMenuShown} />
+      <Navbar
+        pageName="الرئيسية"
+        isMenuShown={isMenuShown}
+        toggleMenuHandler={toggleMenuHandler}
+      />
 
       {/*ABOUT*/}
       <div className="w-[95%] max-w-[112.8rem] mt-[7.4rem]  mx-auto lg:grid grid-cols-2 gap-1 block mb-[12.0rem]">
@@ -70,35 +78,31 @@ export const Home = () => {
         </div>
       </div>
       {/**projects */}
-
-      {/* BS */}
       <div className="w-[95%] max-w-[112.8rem] mt-[7.4rem] mx-auto ">
         <div className="text-center lg:text-start m-auto">
           <SectionInfo title={projectsInfo.title} txt={projectsInfo.txt} />
         </div>
 
-        {/* <div className="lg:grid lg:grid-cols-2 gap-3.6">
-          <ProjectInfo
-            classes="mt-6"
-            paragraph={projectContent[0].paragraph}
-            imgSrc={projectContent[0].imgSrc}
-          />
-          <ProjectInfo
-            paragraph={projectContent[1].paragraph}
-            imgSrc={projectContent[1].imgSrc}
-          />
-          <ProjectInfo
-            paragraph={projectContent[2].paragraph}
-            imgSrc={projectContent[2].imgSrc}
-          />
+        <div className="block lg:grid lg:grid-cols-2 gap-3.6">
+          {projectContent.map((project, indx) => {
+            return (
+              <ProjectInfo
+                key={indx}
+                classes="mt-6"
+                paragraph={project.paragraph}
+                imgSrc={project.imgSrc}
+              />
+            );
+          })}
+
           <div>
-            <p className="text-primary-900 text-2.4 mt-4">
+            <p className="text-1.4 lg:text-2.4 text-primary-900 opacity-80 leading-.5 font-normal mt-4 mb-3.2 text-center lg:text-start">
               استراتيجية النجاح تكمن في التوسع المستمر نحو تطوير عقارات سكنيه
               وتجارية وفقا لخطط مدروسة وجعلها قيمة اسثمارية ناجحة .
             </p>
             <MoreBtn url="/projects" />
           </div>
-        </div> */}
+        </div>
       </div>
       {/** success partner  */}
       <div className="w-full mt-[7.4rem]">

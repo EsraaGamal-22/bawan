@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { pageActive } from "./nabar.module";
-import { navbarInfo } from "./navbar-constants";
 
-export const Navbar = ({ pageName }: pageActive) => {
-  const [isMenuShown, setIsMenuShown] = useState(false);
-  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
+import { navbarInfo } from "./navbar-constants";
+import { MenuStatus } from "./nabar.module";
+
+export const Navbar = ({
+  pageName,
+  isMenuShown,
+  toggleMenuHandler,
+}: MenuStatus) => {
   return (
     <>
       <nav
@@ -14,6 +17,8 @@ export const Navbar = ({ pageName }: pageActive) => {
     items-center
     justify-between
    w-[90%]
+   py-2
+   md:py-0
      text-white
     bg-transparent
     absolute
@@ -26,7 +31,7 @@ export const Navbar = ({ pageName }: pageActive) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           onClick={toggleMenuHandler}
-          className="h-4 w-4 cursor-pointer pt-1 md:hidden block"
+          className="h-4 w-4 cursor-pointer md:hidden block"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -39,35 +44,37 @@ export const Navbar = ({ pageName }: pageActive) => {
           />
         </svg>
         {/* LOGO */}
-        <div className="w-[10%] w-max-[9.8rem] pt-1 md:pt-0">
+        <div className="w-[10%] w-max-[9.8rem]">
           <a href="/">
             <img src="/assets/logo.png" alt="imag-logo" />
           </a>
         </div>
         {/* MENU  ITEMS */}
         <div
-          className={
-            isMenuShown ? "hidden" : "w-full md:flex md:items-center md:w-auto"
-          }
+          className={`w-full md:flex md:items-center md:w-auto ${
+            isMenuShown ? "hidden" : ""
+          }`}
           id="menu"
         >
           <ul
             className="
-        pt-4
+            pt-4
         text-1.4
         lg:text-2.4
+        md:bg-transparent
         md:flex
         md:justify-between
-        md:pt-0"
+        md:pt-0
+        z-[5]"
           >
             {navbarInfo.map((item) => {
               return (
                 <>
-                  <li>
+                  <li className="block mx-auto w-fit">
                     <a
                       className={
                         item.name === pageName
-                          ? "md:px-2 md:py-1 md:mt-3 block border border-solid border-primary-900 rounded-5 bg-primary-900"
+                          ? "px-2 py-1 md:mt-3 block border border-solid border-primary-900 rounded-5 bg-primary-900"
                           : "md:p-4 py-2 block "
                       }
                       href={item.navLink}
