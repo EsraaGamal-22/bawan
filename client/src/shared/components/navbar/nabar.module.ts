@@ -2,6 +2,8 @@ export type navbarItem = {
   name: string;
   navLink: string;
 };
-export type pageActive = {
-  pageName: string;
+export type MenuStatus = {
+  pageName?: string;
+  isMenuShown: boolean;
+  toggleMenuHandler?: () => void;
 };
