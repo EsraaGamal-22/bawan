@@ -1,15 +1,15 @@
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routing/allRoutes";
-import { AppContextProvider } from "./context-app";
+import { NavigationContextProvider } from "./shared/components/navbar/store/context-navigation";
 
 function App() {
   return (
     <>
-      <AppContextProvider>
+      <NavigationContextProvider>
         <div className="App">
           <RouterProvider router={router} />
         </div>
-      </AppContextProvider>
+      </NavigationContextProvider>
     </>
   );
 }

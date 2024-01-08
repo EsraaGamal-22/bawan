@@ -33,8 +33,9 @@ export const ServiceItems = () => {
                   key={idx}
                   className="bg-primary-900 text-white mx-auto text-center p-4 rounded-3 w-[90%] sm:w-[50%] lg:w-full mb-2 lg:mb-0"
                 >
-                  <div className="bg-white w-3 h-3 rounded-full flex justify-center items-center mx-auto mb-3.2">
+                  <div className="bg-white w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem] rounded-full flex justify-center items-center mx-auto mb-3.2">
                     <img
+                      className="w-[70%] rounded-full block"
                       src={
                         baseURL + service.attributes.icon.data.attributes.url
                       }

@@ -4,7 +4,7 @@ import { SocialIcon } from "./social-icon/social-icon";
 export const Footer = () => {
   return (
     <>
-      <div className="w-full mt-[7.4rem] bg-[url(/assets/footerBack.png)] bg-no-repeat bg-cover bg-center relative z-[1] pt-[10.9rem] max-h-fit">
+      <div className="w-full  bg-[url(/assets/footerBack.png)] bg-no-repeat bg-cover bg-center relative z-[1] pt-[10.9rem] max-h-fit">
         <div className="w-[70%]  lg:grid grid-cols-2 gap-20 block mx-auto mb-[12.7rem]">
           <div className="flex flex-col justify-center items-center">
             <img src="/assets/logo.png" alt="logo-img" />
@@ -17,11 +17,17 @@ export const Footer = () => {
               المملكه العربيه السعوديه 428 الرياض حي الملقا طريق انس بن مالك
             </p>
             <p className=" text-white opacity-80 text-1.4 lg:text-2.4 font-normal leading-[6rem] mb-1 lg:mb-3.2">
-              رقم الاتصال : 920019936
+              رقم الاتصال : 0550175111
             </p>
             <div className="w-[90%] sm:w-[55%] flex flex-row justify-between items-center mx-auto lg:mx-0">
               {footerLinks.map((link) => {
-                return <SocialIcon iconSrc={link.iconSrc} info={link.info} />;
+                return (
+                  <SocialIcon
+                    iconSrc={link.iconSrc}
+                    info={link.info}
+                    backgroundColor={link.backgroundColor}
+                  />
+                );
               })}
             </div>
           </div>
@@ -30,7 +36,14 @@ export const Footer = () => {
           {contactDetail.map((contact) => {
             return (
               <>
-                <div className="flex flex-row justify-between items-center mb-2 lg:mb-0">
+                <a
+                  href={
+                    contact.info == "0550175111"
+                      ? "tel:" + `${contact.info}`
+                      : "#"
+                  }
+                  className="flex flex-row justify-between items-center mb-2 lg:mb-0"
+                >
                   <p className="text-white text-1.2 lg:text-1.4">
                     {contact.info}
                   </p>
@@ -39,7 +52,7 @@ export const Footer = () => {
                     alt="icon-contact"
                     className="mr-1.4"
                   />
-                </div>
+                </a>
               </>
             );
           })}

@@ -55,7 +55,7 @@ export default {
       },
       secondary: {
         700: "#3B6BE5",
-        800: "",
+        800: "#008AA6",
         900: "#333333",
       },
       gray: {
