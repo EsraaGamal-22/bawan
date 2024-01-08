@@ -13,12 +13,8 @@ import { SliderPagination } from "./slider-pagination/slider-pagination";
 import { Footer } from "../shared/components/footer/footer";
 import { ProjectInfo } from "./project-info/project-info";
 import { Navbar } from "../shared/components/navbar/navbar";
-import { useContext, useState } from "react";
-import { AppContext } from "../context-app";
 
 export const Home = () => {
-  const { isMenuShown, setIsMenuShown } = useContext(AppContext);
-  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
   return (
     <>
       <Helmet>
@@ -26,15 +22,11 @@ export const Home = () => {
         <meta name="description" content="الصفحة الرئيسبة للموقع " />
       </Helmet>
       {/* HEADER */}
-      <SliderNavigation isMenuShown={isMenuShown} />
-      <Navbar
-        pageName="الرئيسية"
-        isMenuShown={isMenuShown}
-        toggleMenuHandler={toggleMenuHandler}
-      />
+      <SliderNavigation />
+      <Navbar pageName="الرئيسية" />
 
       {/*ABOUT*/}
-      <div className="w-[95%] max-w-[112.8rem] mt-[7.4rem]  mx-auto lg:grid grid-cols-2 gap-1 block mb-[12.0rem]">
+      <div className="w-[95%] max-w-[112.8rem] mb-[12rem]  mx-auto lg:grid grid-cols-2 gap-1 block">
         <div className="h-[33rem] lg:h-[54.6rem] relative hidden lg:block">
           <img src="/assets/about.png" alt="sec-img" />
           <img
@@ -50,7 +42,7 @@ export const Home = () => {
       </div>
 
       {/**services */}
-      <div className="w-[95%] max-w-[112.8rem] mt-[7.4rem] mx-auto lg:grid grid-cols-2 gap-1 block">
+      <div className="w-[95%] max-w-[112.8rem] mb-[12rem] mx-auto lg:grid grid-cols-2 gap-1 block">
         <div className="w-[95%] max-w-[40.4rem] relative mx-auto lg:mx-0">
           <img
             className="hidden lg:block lg:w-full z-[-1]"
@@ -79,7 +71,7 @@ export const Home = () => {
         </div>
       </div>
       {/**projects */}
-      <div className="w-[95%] max-w-[112.8rem] mt-[7.4rem] mx-auto ">
+      <div className="w-[95%] max-w-[112.8rem] mb-[12rem] mx-auto ">
         <div className="text-center lg:text-start m-auto">
           <SectionInfo title={projectsInfo.title} txt={projectsInfo.txt} />
         </div>
@@ -106,7 +98,7 @@ export const Home = () => {
         </div>
       </div>
       {/** success partner  */}
-      <div className="w-full mt-[7.4rem]">
+      <div className="w-full mb-[12rem]">
         <div className="text-center lg:text-start max-w-[107.4rem] m-auto">
           <SectionInfo title={successPartner.title} txt={successPartner.txt} />
           <SliderPagination />

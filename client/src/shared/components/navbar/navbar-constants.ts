@@ -19,6 +19,6 @@ export const navbarInfo: navbarItem[] = [
   },
   {
     name: "تواصل معنا",
-    navLink: "#",
+    navLink: "/contact",
   },
 ];

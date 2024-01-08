@@ -5,24 +5,26 @@ import {
   SetStateAction,
   ReactNode,
 } from "react";
-type AppContext = {
+type NavigationContext = {
   isMenuShown: boolean;
   setIsMenuShown: Dispatch<SetStateAction<boolean>>;
 };
-export const AppContext = createContext<AppContext>({
+export const NavigationContext = createContext<NavigationContext>({
   isMenuShown: false,
   setIsMenuShown: () => {},
 });
 
-type AppContextProvider = {
+type NavigationContextProvider = {
   children: ReactNode;
 };
 
-export const AppContextProvider = ({ children }: AppContextProvider) => {
+export const NavigationContextProvider = ({
+  children,
+}: NavigationContextProvider) => {
   const [isMenuShown, setIsMenuShown] = useState(false);
   return (
-    <AppContext.Provider value={{ isMenuShown, setIsMenuShown }}>
+    <NavigationContext.Provider value={{ isMenuShown, setIsMenuShown }}>
       {children}
-    </AppContext.Provider>
+    </NavigationContext.Provider>
   );
 };

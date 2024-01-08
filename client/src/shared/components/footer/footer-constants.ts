@@ -4,32 +4,37 @@ export const footerLinks: ContactInfo[] = [
   {
     iconSrc: "assets/pinterest.png",
     info: "#",
+    backgroundColor: "bg-white",
   },
   {
     iconSrc: "assets/linkedin.png",
     info: "#",
+    backgroundColor: "bg-white",
   },
   {
     iconSrc: "assets/twitter.png",
     info: "#",
+    backgroundColor: "bg-white",
   },
   {
     iconSrc: "assets/whatsapp.png",
-    info: "#",
+    info: "https://wa.me/920019936",
+    backgroundColor: "bg-white",
   },
   {
     iconSrc: "assets/facebook.png",
     info: "#",
+    backgroundColor: "bg-white",
   },
 ];
-export const contactDetail: ContactInfo[] = [
+export const contactDetail = [
   {
     iconSrc: "/assets/email.png",
-    info: "sampleemail@gmail.com",
+    info: "info@bawanalrehab.com",
   },
   {
     iconSrc: "/assets/phone.png",
-    info: "920019936",
+    info: "0550175111",
   },
   {
     iconSrc: "/assets/map.png",

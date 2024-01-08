@@ -1,11 +1,11 @@
 import { ContactInfo } from "../footer.module";
 
-export const SocialIcon = ({ iconSrc, info }: ContactInfo) => {
+export const SocialIcon = ({ iconSrc, info, backgroundColor }: ContactInfo) => {
   return (
     <>
       <a
         href={info}
-        className="bg-white w-3 h-3 rounded-full flex justify-center items-center"
+        className={`${backgroundColor} w-3 h-3 rounded-full flex justify-center items-center`}
       >
         <img src={iconSrc} alt="img-social" />
       </a>

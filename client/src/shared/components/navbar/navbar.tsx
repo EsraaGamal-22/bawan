@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { navbarInfo } from "./navbar-constants";
-import { MenuStatus } from "./nabar.module";
+import { PageActive } from "./nabar.module";
+import { NavigationContext } from "./store/context-navigation";
 
-export const Navbar = ({
-  pageName,
-  isMenuShown,
-  toggleMenuHandler,
-}: MenuStatus) => {
+export const Navbar = ({ pageName }: PageActive) => {
+  const { isMenuShown, setIsMenuShown } = useContext(NavigationContext);
+  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
   return (
     <>
       <nav
@@ -52,7 +51,7 @@ export const Navbar = ({
         {/* MENU  ITEMS */}
         <div
           className={`w-full md:flex md:items-center md:w-auto ${
-            isMenuShown ? "hidden" : ""
+            isMenuShown ? "" : "hidden"
           }`}
           id="menu"
         >

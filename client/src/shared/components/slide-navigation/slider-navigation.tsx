@@ -9,10 +9,11 @@ import "swiper/css/navigation";
 
 import { Autoplay, EffectCreative, Navigation } from "swiper/modules";
 import { sliderInfo } from "./slider-navigation-contants";
-import { MenuStatus } from "../navbar/nabar.module";
+import { useContext } from "react";
+import { NavigationContext } from "../navbar/store/context-navigation";
 
-export const SliderNavigation = ({ isMenuShown }: MenuStatus) => {
-  sliderInfo;
+export const SliderNavigation = () => {
+  const { isMenuShown, setIsMenuShown } = useContext(NavigationContext);
   return (
     <>
       {/**navigation */}
@@ -22,7 +23,7 @@ export const SliderNavigation = ({ isMenuShown }: MenuStatus) => {
           disableOnInteraction: false,
         }}
         dir="rtl"
-        navigation={!isMenuShown ? false : true}
+        navigation={!isMenuShown}
         effect={"creative"}
         creativeEffect={{
           prev: {
@@ -50,7 +51,7 @@ export const SliderNavigation = ({ isMenuShown }: MenuStatus) => {
                 />
                 <div
                   className={`absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] z-[2] ${
-                    !isMenuShown && "hidden"
+                    isMenuShown ? "hidden" : ""
                   }`}
                 >
                   <h1 className="text-white font-bold text-2 md:text-3 lg:text-4.8 leading-[8rem]">
