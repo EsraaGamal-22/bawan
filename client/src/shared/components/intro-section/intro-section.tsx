@@ -19,7 +19,7 @@ export const IntroSection = ({ title, txt, imgSection }: SectionDetails) => {
             isMenuShown ? "hidden" : ""
           }`}
         >
-          <h1 className="text-white font-bold text-1.2 md:text-2 lg:text-4.4 leading-[4] md:leading-[8rem]">
+          <h1 className="text-white font-bold text-1.2 md:text-2 lg:text-4.4 leading-[3rem] md:leading-[8rem]">
             {title}
           </h1>
           <p className="text-white text-opacity-60 font-normal text-1.5 md:text-2 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">

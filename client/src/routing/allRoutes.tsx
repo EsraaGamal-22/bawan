@@ -4,6 +4,7 @@ import { About } from "../about/about";
 import { Services } from "../services/services";
 import { Projects } from "../projects/projects";
 import { Contact } from "../contact/contact";
+import { DetailsProject } from "../projects/details-project/details-project";
 
 {
   /* BS */
@@ -28,5 +29,9 @@ export const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/detailsProject",
+    element: <DetailsProject />,
   },
 ]);
