@@ -4,7 +4,7 @@ import { IntroSection } from "../shared/components/intro-section/intro-section";
 import { contactDetails, contactLinks, contactPage } from "./contact.constants";
 import { ContactInfo } from "./contact-info/contact-info";
 import { Footer } from "../shared/components/footer/footer";
-import { SocialIcon } from "../shared/components/footer/social-icon/social-icon";
+import { SocialIcon } from "../shared/components/social-icon/social-icon";
 
 export const Contact = () => {
   return (

@@ -1,5 +1,5 @@
 import { contactDetail, footerLinks } from "./footer-constants";
-import { SocialIcon } from "./social-icon/social-icon";
+import { SocialIcon } from "../social-icon/social-icon";
 
 export const Footer = () => {
   return (

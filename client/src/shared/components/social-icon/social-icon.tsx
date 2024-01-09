@@ -1,4 +1,4 @@
-import { ContactInfo } from "../footer.module";
+import { ContactInfo } from "../footer/footer.module";
 
 export const SocialIcon = ({ iconSrc, info, backgroundColor }: ContactInfo) => {
   return (
