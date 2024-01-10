@@ -20,9 +20,10 @@ export const Footer = () => {
               رقم الاتصال : 0550175111
             </p>
             <div className="w-[90%] sm:w-[55%] flex flex-row justify-between items-center mx-auto lg:mx-0">
-              {footerLinks.map((link) => {
+              {footerLinks.map((link, indx) => {
                 return (
                   <SocialIcon
+                    key={indx}
                     iconSrc={link.iconSrc}
                     info={link.info}
                     backgroundColor={link.backgroundColor}
@@ -33,10 +34,11 @@ export const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row justify-between items-center mb-6 w-[95%] lg:w-[50%] mx-auto ">
-          {contactDetail.map((contact) => {
+          {contactDetail.map((contact, indx) => {
             return (
               <>
                 <a
+                  key={indx}
                   href={
                     contact.info == "0550175111"
                       ? "tel:" + `${contact.info}`

@@ -5,8 +5,29 @@ import { projectsPage } from "./projects.constants";
 import { Footer } from "../shared/components/footer/footer";
 import { SectionInfo } from "../shared/components/section-info/section-info";
 import { projectsInfo } from "../home/home.constants";
-
+import { baseURL, request } from "../api/axiox-util";
+import { AxiosResponse } from "axios";
+import { StrapiWrapper } from "../api/models/strapi-wrapper";
+import { useQuery } from "@tanstack/react-query";
+import { ProjectData } from "./models/project-data.model";
+import { StrapiError } from "../api/models/strapi-error";
+import { Loading } from "../shared/components/loading/loading";
+import { ErrorMessage } from "../shared/components/error-message/error-message";
+import Masonry from "react-layout-masonry";
+import { ProjectInfo } from "../home/project-info/project-info";
 export const Projects = () => {
+  const {
+    data: projectData,
+    error,
+    isLoading,
+  } = useQuery<AxiosResponse<StrapiWrapper<ProjectData[]>, any>, StrapiError>({
+    queryKey: ["projects"],
+    queryFn: () =>
+      request.get<StrapiWrapper<ProjectData[]>>(
+        "/api/projects?populate=thumbnail,images"
+      ),
+  });
+
   return (
     <>
       <Helmet>
@@ -25,10 +46,37 @@ export const Projects = () => {
         <div className="text-center lg:text-start m-auto mb-4">
           <SectionInfo title={projectsInfo.title} txt={projectsInfo.txt} />
         </div>
+        {isLoading && <Loading />}
+        {error && <ErrorMessage />}
         <div className="relative ">
-          <a href="/detailsProject" className="text-1.4">
+          {/* <a href="/detailsProject" className="text-1.4">
             more
-          </a>
+          </a> */}
+          {projectData?.data.data.map((item, indx) => {
+            return (
+              <>
+                <Masonry
+                  columns={{ 640: 1, 768: 2, 1024: 3, 1280: 3 }}
+                  gap={16}
+                >
+                  {projectData?.data.data.map((item, indx) => {
+                    return (
+                      <ProjectInfo
+                        key={indx}
+                        paragraph={item.attributes.title}
+                        imgSrc={
+                          baseURL +
+                          item.attributes.thumbnail.data.attributes.formats
+                            .thumbnail.url
+                        }
+                      />
+                    );
+                  })}
+                </Masonry>
+              </>
+            );
+          })}
+
           <div>
             <img
               className="absolute right-0 z-[-1]"
