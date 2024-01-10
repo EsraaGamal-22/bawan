@@ -66,10 +66,10 @@ export const Navbar = ({ pageName }: PageActive) => {
         md:pt-0
         z-[5]"
           >
-            {navbarInfo.map((item) => {
+            {navbarInfo.map((item, indx) => {
               return (
                 <>
-                  <li className="block mx-auto w-fit">
+                  <li key={indx} className="block mx-auto w-fit">
                     <a
                       className={
                         item.name === pageName

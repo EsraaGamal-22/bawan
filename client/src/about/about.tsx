@@ -59,7 +59,7 @@ export const About = () => {
         <div className="mb-5.6">
           <img src="/assets/aboutsectionmore.png" alt="about-img" />
         </div>
-        <div className=" ">
+        <div>
           {morePlansInfo.map((plan, indx) => {
             return (
               <>

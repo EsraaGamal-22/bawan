@@ -1,29 +1,32 @@
-import { useLayoutEffect, useRef, useState } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
+import { useLayoutEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/css"
-import "swiper/css/free-mode"
-import "swiper/css/navigation"
-import "swiper/css/thumbs"
-import { Swiper as SwiperClass } from "swiper/types"
-import SwiperCore from "swiper"
-import { FreeMode, Navigation, Thumbs, Controller } from "swiper/modules"
-
-export const SliderThumbs = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>()
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { Swiper as SwiperClass } from "swiper/types";
+import SwiperCore from "swiper";
+import { FreeMode, Navigation, Thumbs, Controller } from "swiper/modules";
+import { baseURL } from "../../api/axiox-util";
+type SliderImages = {
+  projectImages: string[];
+};
+export const SliderThumbs = ({ projectImages }: SliderImages) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
   // const [firstSwiper, setFirstSwiper] = useState<SwiperClass>();
   // const [secondSwiper, setSecondSwiper] = useState<SwiperClass>();
-  const swiper1Ref = useRef<SwiperClass>(null)
-  const swiper2Ref = useRef()
+  const swiper1Ref = useRef<SwiperClass>(null);
+  const swiper2Ref = useRef();
 
   useLayoutEffect(() => {
     if (swiper1Ref.current !== null) {
-      swiper1Ref.current.controller.control = swiper2Ref.current
+      swiper1Ref.current.controller.control = swiper2Ref.current;
     }
-  }, [])
+  }, []);
 
   return (
-    <div className="h-[550px] ">
+    <div>
       <Swiper
         // onSwiper={(swiper) => {
         //   if (swiper1Ref.current !== null) {
@@ -39,107 +42,59 @@ export const SliderThumbs = () => {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs, Controller]}
-        className="w-[848px] h-[454px] rounded-xl"
+        className="rounded-xl mb-3.2 w-full"
       >
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/9634e6s-960.jpg" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/a5634e6s-960.jpg" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/13634e6s-960.jpg" />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/e3634e6s-960.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="http://carsot.com/images/daewoo-nubira-ii-1999-2003-sedan-interior-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://www.4tuning.ro/images/elemente-caroserie-din-dezmembrari-daewoo-nubira/elemente-caroserie-din-dezmembrari-daewoo-nubira-8fd6c1475ef586f2cf-1100-615-2-85-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/5283186s-480.jpg" className="w-full" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/JCAAAgGDAuA-960.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://a.d-cd.net/a5634e6s-960.jpg" />
-        </SwiperSlide>
+        {projectImages.map((img, indx) => {
+          return (
+            <>
+              <SwiperSlide key={indx} className="w-full h-[79rem]">
+                <img className="w-full" src={baseURL + img} alt="slide-img" />
+              </SwiperSlide>
+            </>
+          );
+        })}
       </Swiper>
       <Swiper
         // controller={{ control: firstSwiper }}
         loop={false}
         spaceBetween={10}
-        slidesPerView={8}
+        slidesPerView={1}
+        breakpoints={{
+          320: {
+            slidesPerView: 4,
+          },
+
+          499: {
+            slidesPerView: 5,
+          },
+          999: {
+            slidesPerView: 7,
+          },
+          1200: {
+            slidesPerView: 8,
+          },
+        }}
         watchSlidesProgress
         touchRatio={0.2}
         slideToClickedSlide={true}
         onSwiper={setThumbsSwiper}
         modules={[Navigation, Thumbs, Controller]}
-        className="h-[100.4px] w-[848px] mt-[20px] rounded-xl"
+        className=" rounded-xl"
       >
-        <SwiperSlide className="w-[70px]">
-          <img
-            src="https://a.d-cd.net/9634e6s-960.jpg"
-            className=" rounded-xl  h-[70px]"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            src="https://a.d-cd.net/a5634e6s-960.jpg"
-            className=" rounded-xl  h-[70px]"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            src="https://a.d-cd.net/13634e6s-960.jpg"
-            className=" rounded-xl  h-[70px]"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            src="https://a.d-cd.net/e3634e6s-960.jpg"
-            className=" rounded-xl  h-[70px]"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            src="http://carsot.com/images/daewoo-nubira-ii-1999-2003-sedan-interior-2.jpg"
-            className=" rounded-xl  h-[70px]"
-          />
-        </SwiperSlide>
-
-        <SwiperSlide className="w-[70px]">
-          <img
-            className=" rounded-xl  h-[70px]"
-            src="https://www.4tuning.ro/images/elemente-caroserie-din-dezmembrari-daewoo-nubira/elemente-caroserie-din-dezmembrari-daewoo-nubira-8fd6c1475ef586f2cf-1100-615-2-85-1.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            className=" rounded-xl  h-[70px]"
-            src="https://a.d-cd.net/5283186s-480.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            className=" rounded-xl  h-[70px]"
-            src="https://a.d-cd.net/JCAAAgGDAuA-960.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="w-[70px]">
-          <img
-            src="https://a.d-cd.net/a5634e6s-960.jpg"
-            className=" rounded-xl  h-[70px]"
-          />
-        </SwiperSlide>
+        {projectImages.map((img, indx) => {
+          return (
+            <>
+              <SwiperSlide className="w-[20%]" key={indx}>
+                <img
+                  src={baseURL + img}
+                  className="h-[7rem] rounded-xl"
+                  alt="slide-img"
+                />
+              </SwiperSlide>
+            </>
+          );
+        })}
       </Swiper>
     </div>
-  )
-}
+  );
+};

@@ -8,7 +8,7 @@ export const ProjectInfo = ({ paragraph, imgSrc, classes }: ProjectDetails) => {
     <>
       <div
         className={
-          "relative h-fit sm:w-[50%] sm:mx-auto lg:w-full after:w-full after:h-full after:block after:absolute after:top-0 after:z-[1] bg-gradient-to-t from-black to-white" +
+          "relative  after:w-full after:h-full after:block after:absolute after:top-0 after:z-[1] bg-gradient-to-t from-black to-white" +
           ` ${classes || ""}`
         }
       >
