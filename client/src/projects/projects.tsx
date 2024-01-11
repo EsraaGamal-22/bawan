@@ -9,23 +9,42 @@ import { baseURL, request } from "../api/axiox-util";
 import { AxiosResponse } from "axios";
 import { StrapiWrapper } from "../api/models/strapi-wrapper";
 import { useQuery } from "@tanstack/react-query";
-import { ProjectData } from "./models/project-data.model";
+import { Project } from "./models/project-data.model";
 import { StrapiError } from "../api/models/strapi-error";
 import { Loading } from "../shared/components/loading/loading";
 import { ErrorMessage } from "../shared/components/error-message/error-message";
 import Masonry from "react-layout-masonry";
 import { ProjectInfo } from "../home/project-info/project-info";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 export const Projects = () => {
+  const [pageNumber, setPageNumber] = useState(1);
+
+  // const {
+  //   data: projectData,
+  //   error,
+  //   isLoading,
+  // } = useQuery<AxiosResponse<StrapiWrapper<Project[]>, any>, StrapiError>({
+  //   queryKey: ["projects"],
+  //   queryFn: () =>
+  //     request.get<StrapiWrapper<Project[]>>(
+  //       "/api/projects/?populate=thumbnail,images&pagination[page]=1&pagination[pageSize]=2"
+  //     ),
+  // });
   const {
     data: projectData,
     error,
     isLoading,
-  } = useQuery<AxiosResponse<StrapiWrapper<ProjectData[]>, any>, StrapiError>({
-    queryKey: ["projects"],
+  } = useQuery<AxiosResponse<StrapiWrapper<Project[]>, any>, StrapiError>({
+    queryKey: ["projects", pageNumber],
     queryFn: () =>
-      request.get<StrapiWrapper<ProjectData[]>>(
-        "/api/projects?populate=thumbnail,images"
-      ),
+      request.get<StrapiWrapper<Project[]>>("/api/projects", {
+        params: {
+          populate: "thumbnail,images",
+          "pagination[page]": pageNumber,
+          "pagination[pageSize]": 4,
+        },
+      }),
   });
 
   return (
@@ -59,23 +78,42 @@ export const Projects = () => {
                   columns={{ 640: 1, 768: 2, 1024: 3, 1280: 3 }}
                   gap={16}
                 >
-                  {projectData?.data.data.map((item, indx) => {
-                    return (
-                      <ProjectInfo
-                        key={indx}
-                        paragraph={item.attributes.title}
-                        imgSrc={
-                          baseURL +
-                          item.attributes.thumbnail.data.attributes.formats
-                            .thumbnail.url
-                        }
-                      />
-                    );
-                  })}
+                  <ProjectInfo
+                    key={crypto.randomUUID()}
+                    paragraph={item.attributes.title}
+                    imgSrc={
+                      baseURL +
+                      item.attributes.thumbnail.data.attributes.formats
+                        .thumbnail.url
+                    }
+                  />
                 </Masonry>
               </>
             );
           })}
+
+          {/* paginator */}
+          <div className="w-[10%] mx-auto flex justify-between items-center">
+            {projectData?.data.meta.pagination && (
+              <>
+                {Array.from({
+                  length: projectData?.data.meta.pagination.pageCount,
+                }).map((value, indx) => {
+                  const currentPage = indx + 1;
+                  return (
+                    <>
+                      <span
+                        className="cursor-pointer"
+                        onClick={() => setPageNumber(currentPage)}
+                      >
+                        {currentPage}
+                      </span>
+                    </>
+                  );
+                })}
+              </>
+            )}
+          </div>
 
           <div>
             <img

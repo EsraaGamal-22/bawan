@@ -1,14 +1,17 @@
+import { useParams } from "react-router-dom";
+
 export type ProjectDetails = {
   paragraph: string;
   imgSrc: string;
   classes?: string;
 };
 export const ProjectInfo = ({ paragraph, imgSrc, classes }: ProjectDetails) => {
+  const { projectId } = useParams();
   return (
     <>
       <div
         className={
-          "relative  after:w-full after:h-full after:block after:absolute after:top-0 after:z-[1] bg-gradient-to-t from-black to-white" +
+          "relative after:w-full after:h-full after:block after:absolute after:top-0 after:z-[1] bg-gradient-to-t from-black to-white" +
           ` ${classes || ""}`
         }
       >
@@ -17,7 +20,7 @@ export const ProjectInfo = ({ paragraph, imgSrc, classes }: ProjectDetails) => {
           <span className="text-white font-normal text-1.4 lg:text-2.4">
             {paragraph}
           </span>
-          <a href="/projects">
+          <a href={"/projects/" + projectId}>
             <span className="text-white text-3 lg:text-5">&#x2197;</span>
           </a>
         </div>
