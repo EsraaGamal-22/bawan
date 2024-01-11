@@ -13,17 +13,17 @@ import { useQuery } from "@tanstack/react-query";
 import { Loading } from "../../shared/components/loading/loading";
 import { ErrorMessage } from "../../shared/components/error-message/error-message";
 import { EmptyData } from "../../shared/components/empty-data/empty-data";
-import { ProjectData } from "../models/project-data.model";
+import { Project } from "../models/project-data.model";
 
 export const DetailsProject = () => {
   const {
     data: projectData,
     error,
     isLoading,
-  } = useQuery<AxiosResponse<StrapiWrapper<ProjectData>, any>, StrapiError>({
+  } = useQuery<AxiosResponse<StrapiWrapper<Project>, any>, StrapiError>({
     queryKey: ["project"],
     queryFn: () =>
-      request.get<StrapiWrapper<ProjectData>>(
+      request.get<StrapiWrapper<Project>>(
         "/api/projects/1?populate=thumbnail,images"
       ),
   });
