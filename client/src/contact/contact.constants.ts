@@ -1,12 +1,12 @@
-import { ContactInfo } from "../shared/components/footer/footer.module";
-import { ContactUsInfo } from "./contact-info/contact-info";
+import { ContactLinksProps } from "../shared/components/footer/footer.module";
+import { ContactDetailsProps } from "./contact-info/contact-info";
 
 export const contactPage = {
   title: " مجتمع عمراني",
   txt: "متكامل في فضاء التميز و الابداع",
   imgSection: "/assets/contactpage.png",
 };
-export const contactDetails: ContactUsInfo[] = [
+export const contactDetails: ContactDetailsProps[] = [
   {
     txt: "المملكه العربيه السعوديه , الرياض , حي الملقا 108",
     imgSrc: "/assets/mapcontact.png",
@@ -23,7 +23,7 @@ export const contactDetails: ContactUsInfo[] = [
     link: "#",
   },
 ];
-export const contactLinks: ContactInfo[] = [
+export const contactLinks: ContactLinksProps[] = [
   {
     iconSrc: "assets/pinContact.png",
     info: "#",

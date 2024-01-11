@@ -1,4 +1,4 @@
-export type SectionDetails = {
+export type IntroSectionProps = {
   title: string;
   txt: string;
   imgSection: string;

@@ -2,9 +2,9 @@ import { servicesPage } from "../../../services/services.constants";
 import { NavigationContext } from "../navbar/store/context-navigation";
 
 import { useContext } from "react";
-import { SectionDetails } from "./intro-section.module";
+import { IntroSectionProps } from "./intro-section.module";
 
-export const IntroSection = ({ title, txt, imgSection }: SectionDetails) => {
+export const IntroSection = ({ title, txt, imgSection }: IntroSectionProps) => {
   const { isMenuShown, setIsMenuShown } = useContext(NavigationContext);
   return (
     <>
@@ -19,10 +19,10 @@ export const IntroSection = ({ title, txt, imgSection }: SectionDetails) => {
             isMenuShown ? "hidden" : ""
           }`}
         >
-          <h1 className="text-white font-bold text-1.2 md:text-2 lg:text-4.4 leading-[3rem] md:leading-[8rem]">
+          <h1 className="text-white font-bold text-2 md:text-3.4 lg:text-4.4 leading-[7rem] md:leading-[8rem]">
             {title}
           </h1>
-          <p className="text-white text-opacity-60 font-normal text-1.5 md:text-2 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">
+          <p className="text-white text-opacity-60 font-normal text-1.8 md:text-2.5 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">
             {txt}
           </p>
         </div>

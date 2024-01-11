@@ -60,11 +60,11 @@ export const About = () => {
           <img src="/assets/aboutsectionmore.png" alt="about-img" />
         </div>
         <div>
-          {morePlansInfo.map((plan, indx) => {
+          {morePlansInfo.map((plan) => {
             return (
               <>
                 <p
-                  key={indx}
+                  key={crypto.randomUUID()}
                   className=" lg:mb-5.2 text-1.4 lg:text-2.4 text-primary-900 opacity-80 leading-.5 font-normal"
                 >
                   {plan}

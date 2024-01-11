@@ -1,4 +1,4 @@
-export type navbarItem = {
+export type navbarInfoProps = {
   name: string;
   navLink: string;
 };

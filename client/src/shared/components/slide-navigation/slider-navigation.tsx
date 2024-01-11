@@ -37,11 +37,11 @@ export const SliderNavigation = () => {
         modules={[Autoplay, Navigation, EffectCreative]}
         className="mySwiper w-full h-dvh mb-[12.0rem]"
       >
-        {sliderInfo.map((slide, idx) => {
+        {sliderInfo.map((slide) => {
           return (
             <>
               <SwiperSlide
-                key={idx}
+                key={crypto.randomUUID()}
                 className="relative d-flex align-middle justify-self-center text-center after:w-full after:h-full after:block after:absolute after:top-0 after:z-[1] after:bg-black/55"
               >
                 <img
@@ -54,10 +54,10 @@ export const SliderNavigation = () => {
                     isMenuShown ? "hidden" : ""
                   }`}
                 >
-                  <h1 className="text-white font-bold text-2 md:text-3 lg:text-4.8 leading-[8rem]">
+                  <h1 className="text-white font-bold text-2.8 md:text-3 lg:text-4.8 leading-[8rem]">
                     {slide.title}
                   </h1>
-                  <p className="text-white text-opacity-60 font-normal text-1.5 md:text-2 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">
+                  <p className="text-white text-opacity-60 font-normal text-2 md:text-2 lg:text-3.2 leading-[2.8rem] mt-0.5 lg:mt-3.2">
                     {slide.paragraph}
                   </p>
                 </div>

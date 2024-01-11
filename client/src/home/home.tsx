@@ -13,8 +13,36 @@ import { SliderPagination } from "./slider-pagination/slider-pagination";
 import { Footer } from "../shared/components/footer/footer";
 import { ProjectInfo } from "./project-info/project-info";
 import { Navbar } from "../shared/components/navbar/navbar";
+import { Loading } from "../shared/components/loading/loading";
+import { ErrorMessage } from "../shared/components/error-message/error-message";
+import { EmptyData } from "../shared/components/empty-data/empty-data";
+import { StrapiError } from "../api/models/strapi-error";
+import { AxiosResponse } from "axios";
+import { StrapiWrapper } from "../api/models/strapi-wrapper";
+import { request } from "../api/axiox-util";
+import { ProjectDetailsProps } from "../projects/models/project-data.model";
+import { useQuery } from "@tanstack/react-query";
+import Masonry from "react-layout-masonry";
 
 export const Home = () => {
+  const {
+    data: projectData,
+    error,
+    isLoading,
+  } = useQuery<
+    AxiosResponse<StrapiWrapper<ProjectDetailsProps[]>, any>,
+    StrapiError
+  >({
+    queryKey: ["projects"],
+    queryFn: () =>
+      request.get<StrapiWrapper<ProjectDetailsProps[]>>("/api/projects", {
+        params: {
+          populate: "thumbnail",
+          "pagination[page]": 1,
+          "pagination[pageSize]": 5,
+        },
+      }),
+  });
   return (
     <>
       <Helmet>
@@ -75,19 +103,27 @@ export const Home = () => {
         <div className="text-center lg:text-start m-auto">
           <SectionInfo title={projectsInfo.title} txt={projectsInfo.txt} />
         </div>
-
-        <div className="block lg:grid lg:grid-cols-2 gap-3.6">
-          {projectContent.map((project, indx) => {
-            return (
-              <ProjectInfo
-                key={indx}
-                classes="mt-6"
-                paragraph={project.paragraph}
-                imgSrc={project.imgSrc}
-              />
-            );
-          })}
-
+        {isLoading && <Loading />}
+        {error && <ErrorMessage />}
+        {projectData && projectData.data.data.length === 0 && <EmptyData />}
+        <Masonry className="mb-[12rem]" columns={{ 640: 1, 768: 2 }} gap={16}>
+          {projectData &&
+            projectData.data.data.length > 0 &&
+            projectData.data.data.map((project) => {
+              return (
+                <>
+                  <ProjectInfo
+                    key={project.id}
+                    id={project.id}
+                    title={project.attributes.title}
+                    imgUrl={
+                      project.attributes.thumbnail.data.attributes.formats
+                        .thumbnail.url
+                    }
+                  />
+                </>
+              );
+            })}
           <div>
             <p className="text-1.4 lg:text-2.4 text-primary-900 opacity-80 leading-.5 font-normal mt-4 mb-3.2 text-center lg:text-start">
               استراتيجية النجاح تكمن في التوسع المستمر نحو تطوير عقارات سكنيه
@@ -95,8 +131,9 @@ export const Home = () => {
             </p>
             <MoreBtn url="/projects" />
           </div>
-        </div>
+        </Masonry>
       </div>
+      {/* </div> */}
       {/** success partner  */}
       <div className="w-full mb-[12rem]">
         <div className="text-center lg:text-start max-w-[107.4rem] m-auto">

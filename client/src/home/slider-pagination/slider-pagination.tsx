@@ -62,10 +62,10 @@ export const SliderPagination = () => {
         {partnerData && partnerData.data.data.length === 0 && <EmptyData />}
         {partnerData &&
           partnerData.data.data.length > 0 &&
-          partnerData.data.data.map((partner, idx) => {
+          partnerData.data.data.map((partner) => {
             return (
               <>
-                <SwiperSlide key={idx} className="mb-4 mt-2 lg:mt-5">
+                <SwiperSlide key={partner.id} className="mb-4 mt-2 lg:mt-5">
                   <div className="flex flex-col justify-center items-center">
                     <div className="w-max-5.5">
                       <img

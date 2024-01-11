@@ -1,4 +1,4 @@
-export type Project = {
+export type ProjectDetailsProps = {
   id: number;
   attributes: {
     title: string;
@@ -16,9 +16,6 @@ export type Project = {
       };
     };
     images: {
-      // دي معناها انها اراي واحده فيها كذا مذا
-      // data: [{ id: number; attributes: { url: string } }];
-      // دي معناها اراي اوف كذا
       data: { id: number; attributes: { url: string } }[];
     };
   };
