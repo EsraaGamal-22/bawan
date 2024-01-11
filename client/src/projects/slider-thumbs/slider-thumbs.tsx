@@ -9,10 +9,15 @@ import { Swiper as SwiperClass } from "swiper/types";
 import SwiperCore from "swiper";
 import { FreeMode, Navigation, Thumbs, Controller } from "swiper/modules";
 import { baseURL } from "../../api/axiox-util";
-type SliderImages = {
-  projectImages: string[];
+type SliderThumbsProps = {
+  projectImages: {
+    id: number;
+    attributes: {
+      url: string;
+    };
+  }[];
 };
-export const SliderThumbs = ({ projectImages }: SliderImages) => {
+export const SliderThumbs = ({ projectImages }: SliderThumbsProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
   // const [firstSwiper, setFirstSwiper] = useState<SwiperClass>();
   // const [secondSwiper, setSecondSwiper] = useState<SwiperClass>();
@@ -44,11 +49,15 @@ export const SliderThumbs = ({ projectImages }: SliderImages) => {
         modules={[FreeMode, Navigation, Thumbs, Controller]}
         className="rounded-xl mb-3.2 w-full"
       >
-        {projectImages.map((img, indx) => {
+        {projectImages.map((img) => {
           return (
             <>
-              <SwiperSlide key={indx} className="w-full h-[79rem]">
-                <img className="w-full" src={baseURL + img} alt="slide-img" />
+              <SwiperSlide key={img.id} className="w-full h-[79rem]">
+                <img
+                  className="w-full"
+                  src={baseURL + img.attributes.url}
+                  alt="slide-img"
+                />
               </SwiperSlide>
             </>
           );
@@ -81,12 +90,12 @@ export const SliderThumbs = ({ projectImages }: SliderImages) => {
         modules={[Navigation, Thumbs, Controller]}
         className=" rounded-xl"
       >
-        {projectImages.map((img, indx) => {
+        {projectImages.map((img) => {
           return (
             <>
-              <SwiperSlide className="w-[20%]" key={indx}>
+              <SwiperSlide key={img.id} className="w-[20%]">
                 <img
-                  src={baseURL + img}
+                  src={baseURL + img.attributes.url}
                   className="h-[7rem] rounded-xl"
                   alt="slide-img"
                 />

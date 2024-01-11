@@ -1,6 +1,6 @@
-import { ContactInfo } from "./footer.module";
+import { ContactLinksProps } from "./footer.module";
 
-export const footerLinks: ContactInfo[] = [
+export const footerLinks: ContactLinksProps[] = [
   {
     iconSrc: "assets/pinterest.png",
     info: "#",

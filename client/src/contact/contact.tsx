@@ -27,11 +27,11 @@ export const Contact = () => {
             تواصل معنا
           </h1>
           <div className="mx-auto mt-5.5 mb-3.2 z-[-1]">
-            {contactDetails.map((contact, indx) => {
+            {contactDetails.map((contact) => {
               return (
                 <>
                   <ContactInfo
-                    key={indx}
+                    key={crypto.randomUUID()}
                     txt={contact.txt}
                     imgSrc={contact.imgSrc}
                     link={contact.link}

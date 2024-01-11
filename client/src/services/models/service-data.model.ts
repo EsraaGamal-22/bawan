@@ -1,4 +1,4 @@
-export type ServiceData = {
+export type ServiceDetailsProps = {
   id: number;
   attributes: {
     title: string;

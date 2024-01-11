@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { StrapiError } from "../../api/models/strapi-error";
 import { StrapiWrapper } from "../../api/models/strapi-wrapper";
-import { ServiceData } from "../models/service-data.model";
+import { ServiceDetailsProps } from "../models/service-data.model";
 import { useQuery } from "@tanstack/react-query";
 import { baseURL, request } from "../../api/axiox-util";
 import { Loading } from "../../shared/components/loading/loading";
@@ -13,10 +13,17 @@ export const ServiceItems = () => {
     data: serviceData,
     error,
     isLoading,
-  } = useQuery<AxiosResponse<StrapiWrapper<ServiceData[]>, any>, StrapiError>({
-    queryKey: ["partner"],
+  } = useQuery<
+    AxiosResponse<StrapiWrapper<ServiceDetailsProps[]>, any>,
+    StrapiError
+  >({
+    queryKey: ["services"],
     queryFn: () =>
-      request.get<StrapiWrapper<ServiceData[]>>("/api/services?populate=icon"),
+      request.get<StrapiWrapper<ServiceDetailsProps[]>>("/api/services", {
+        params: {
+          populate: "icon",
+        },
+      }),
   });
   return (
     <>
@@ -26,11 +33,11 @@ export const ServiceItems = () => {
       <div className="lg:grid grid-cols-3 gap-[6.5rem] block ">
         {serviceData &&
           serviceData.data.data.length > 0 &&
-          serviceData.data.data.map((service, idx) => {
+          serviceData.data.data.map((service) => {
             return (
               <>
                 <div
-                  key={idx}
+                  key={service.id}
                   className="bg-primary-900 text-white mx-auto text-center p-4 rounded-3 w-[90%] sm:w-[50%] lg:w-full mb-2 lg:mb-0"
                 >
                   <div className="bg-white w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem] rounded-full flex justify-center items-center mx-auto mb-3.2">

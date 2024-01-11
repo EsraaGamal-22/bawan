@@ -9,38 +9,29 @@ import { baseURL, request } from "../api/axiox-util";
 import { AxiosResponse } from "axios";
 import { StrapiWrapper } from "../api/models/strapi-wrapper";
 import { useQuery } from "@tanstack/react-query";
-import { Project } from "./models/project-data.model";
+import { ProjectDetailsProps } from "./models/project-data.model";
 import { StrapiError } from "../api/models/strapi-error";
 import { Loading } from "../shared/components/loading/loading";
 import { ErrorMessage } from "../shared/components/error-message/error-message";
 import Masonry from "react-layout-masonry";
 import { ProjectInfo } from "../home/project-info/project-info";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { EmptyData } from "../shared/components/empty-data/empty-data";
 export const Projects = () => {
   const [pageNumber, setPageNumber] = useState(1);
-
-  // const {
-  //   data: projectData,
-  //   error,
-  //   isLoading,
-  // } = useQuery<AxiosResponse<StrapiWrapper<Project[]>, any>, StrapiError>({
-  //   queryKey: ["projects"],
-  //   queryFn: () =>
-  //     request.get<StrapiWrapper<Project[]>>(
-  //       "/api/projects/?populate=thumbnail,images&pagination[page]=1&pagination[pageSize]=2"
-  //     ),
-  // });
   const {
     data: projectData,
     error,
     isLoading,
-  } = useQuery<AxiosResponse<StrapiWrapper<Project[]>, any>, StrapiError>({
+  } = useQuery<
+    AxiosResponse<StrapiWrapper<ProjectDetailsProps[]>, any>,
+    StrapiError
+  >({
     queryKey: ["projects", pageNumber],
     queryFn: () =>
-      request.get<StrapiWrapper<Project[]>>("/api/projects", {
+      request.get<StrapiWrapper<ProjectDetailsProps[]>>("/api/projects", {
         params: {
-          populate: "thumbnail,images",
+          populate: "thumbnail",
           "pagination[page]": pageNumber,
           "pagination[pageSize]": 4,
         },
@@ -67,63 +58,87 @@ export const Projects = () => {
         </div>
         {isLoading && <Loading />}
         {error && <ErrorMessage />}
-        <div className="relative ">
-          {/* <a href="/detailsProject" className="text-1.4">
-            more
-          </a> */}
-          {projectData?.data.data.map((item, indx) => {
-            return (
-              <>
-                <Masonry
-                  columns={{ 640: 1, 768: 2, 1024: 3, 1280: 3 }}
-                  gap={16}
-                >
+        {projectData && projectData.data.data.length === 0 && <EmptyData />}
+
+        <Masonry
+          className="mb-[12rem]"
+          columns={{ 640: 1, 768: 2, 1024: 3, 1280: 3 }}
+          gap={16}
+        >
+          {projectData &&
+            projectData.data.data.length > 0 &&
+            projectData.data.data.map((project) => {
+              return (
+                <>
                   <ProjectInfo
-                    key={crypto.randomUUID()}
-                    paragraph={item.attributes.title}
-                    imgSrc={
-                      baseURL +
-                      item.attributes.thumbnail.data.attributes.formats
+                    key={project.id}
+                    id={project.id}
+                    title={project.attributes.title}
+                    imgUrl={
+                      project.attributes.thumbnail.data.attributes.formats
                         .thumbnail.url
                     }
                   />
-                </Masonry>
-              </>
-            );
-          })}
-
-          {/* paginator */}
-          <div className="w-[10%] mx-auto flex justify-between items-center">
-            {projectData?.data.meta.pagination && (
-              <>
-                {Array.from({
-                  length: projectData?.data.meta.pagination.pageCount,
-                }).map((value, indx) => {
-                  const currentPage = indx + 1;
-                  return (
-                    <>
-                      <span
-                        className="cursor-pointer"
-                        onClick={() => setPageNumber(currentPage)}
-                      >
-                        {currentPage}
-                      </span>
-                    </>
-                  );
-                })}
-              </>
-            )}
+                </>
+              );
+            })}
+        </Masonry>
+        {/* paginator */}
+        <div className="w-fit mx-auto flex justify-between items-center">
+          <div
+            className={`cursor-pointer ml-1 w-4 h-4 lg:w-[5.2rem] lg:h-[5.2rem] text-2 lg:text-2.6 border font-medium rounded-full  flex justify-center items-center ml-.3 ${
+              pageNumber == 1
+                ? "text-gray-800 border-gray-700 "
+                : "text-primary-900 border-secondary-700"
+            }`}
+            onClick={() => pageNumber !== 1 && setPageNumber(pageNumber - 1)}
+          >
+            &#x21fe;
           </div>
-
-          <div>
-            <img
-              className="absolute right-0 z-[-1]"
-              src="/assets/backProjects.png"
-              alt="back-img"
-            />
+          {projectData?.data.meta.pagination && (
+            <>
+              {Array.from({
+                length: projectData?.data.meta.pagination.pageCount,
+              }).map((value, indx) => {
+                const currentPage = indx + 1;
+                return (
+                  <>
+                    <span
+                      key={crypto.randomUUID()}
+                      className="cursor-pointer ml-1 w-4 h-4 lg:w-[5.2rem] lg:h-[5.2rem] font-medium text-1.4 lg:text-1.6  text-primary-900 rounded-full border border-secondary-700 flex justify-center items-center ml-.3"
+                      onClick={() => setPageNumber(currentPage)}
+                    >
+                      {currentPage}
+                    </span>
+                  </>
+                );
+              })}
+            </>
+          )}
+          <div
+            onClick={() =>
+              pageNumber !== projectData?.data.meta.pagination.pageCount &&
+              setPageNumber(pageNumber + 1)
+            }
+            className={`cursor-pointer ml-1 w-4 h-4 lg:w-[5.2rem] lg:h-[5.2rem] text-2 lg:text-2.6 font-medium rounded-full border flex justify-center items-center ml-.3 ${
+              pageNumber === projectData?.data.meta.pagination.pageCount
+                ? "text-gray-800 border-gray-700"
+                : "text-primary-900 border-secondary-700"
+            }`}
+          >
+            &#x21fd;
           </div>
         </div>
+
+        <div>
+          <img
+            className="absolute right-0 z-[-1] bottom-0 "
+            src="/assets/backProjects.png"
+            alt="back-img"
+          />
+        </div>
       </div>
+
       {/**footer */}
       <Footer />
     </>

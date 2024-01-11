@@ -36,9 +36,9 @@ export const Navbar = ({ pageName }: PageActive) => {
           stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
@@ -66,10 +66,10 @@ export const Navbar = ({ pageName }: PageActive) => {
         md:pt-0
         z-[5]"
           >
-            {navbarInfo.map((item, indx) => {
+            {navbarInfo.map((item) => {
               return (
                 <>
-                  <li key={indx} className="block mx-auto w-fit">
+                  <li key={crypto.randomUUID()} className="block mx-auto w-fit">
                     <a
                       className={
                         item.name === pageName

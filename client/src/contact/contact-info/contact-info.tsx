@@ -1,10 +1,9 @@
-export type ContactUsInfo = {
+export type ContactDetailsProps = {
   txt: string;
   imgSrc: string;
   link: string;
 };
-export const ContactInfo = ({ txt, imgSrc, link }: ContactUsInfo) => {
-  console.log(link);
+export const ContactInfo = ({ txt, imgSrc, link }: ContactDetailsProps) => {
   return (
     <>
       <a href={link} className="flex items-center">
