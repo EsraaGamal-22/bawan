@@ -14,7 +14,7 @@ export const Contact = () => {
         <meta name="description" content="صفحة التواصل مع الرحاب العقارية" />
       </Helmet>
       {/**HEADER */}
-      <Navbar pageName="تواصل معنا" />
+      <Navbar  />
       <IntroSection
         title={contactPage.title}
         txt={contactPage.txt}

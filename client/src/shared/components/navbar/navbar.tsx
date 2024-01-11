@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext } from "react"
 
-import { navbarInfo } from "./navbar-constants";
-import { PageActive } from "./nabar.module";
-import { NavigationContext } from "./store/context-navigation";
+import { navbarInfo } from "./navbar-constants"
+import { NavigationContext } from "./store/context-navigation"
+import { NavLink } from "react-router-dom"
 
-export const Navbar = ({ pageName }: PageActive) => {
-  const { isMenuShown, setIsMenuShown } = useContext(NavigationContext);
-  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal);
+export const Navbar = () => {
+  const { isMenuShown, setIsMenuShown } = useContext(NavigationContext)
+  const toggleMenuHandler = () => setIsMenuShown((currentVal) => !currentVal)
   return (
     <>
       <nav
@@ -68,25 +68,23 @@ export const Navbar = ({ pageName }: PageActive) => {
           >
             {navbarInfo.map((item) => {
               return (
-                <>
-                  <li key={crypto.randomUUID()} className="block mx-auto w-fit">
-                    <a
-                      className={
-                        item.name === pageName
-                          ? "px-2 py-1 md:mt-3 block border border-solid border-primary-900 rounded-5 bg-primary-900"
-                          : "md:p-4 py-2 block "
-                      }
-                      href={item.navLink}
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                </>
-              );
+                <li key={item.name} className="block mx-auto w-fit">
+                  <NavLink
+                    to={item.navLink}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "px-2 py-1 md:mt-3 block border border-solid border-primary-900 rounded-5 bg-primary-900"
+                        : "md:p-4 py-2 block"
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                </li>
+              )
             })}
           </ul>
         </div>
       </nav>
     </>
-  );
-};
+  )
+}

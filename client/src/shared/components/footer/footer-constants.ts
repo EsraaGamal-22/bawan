@@ -2,27 +2,27 @@ import { ContactLinksProps } from "./footer.module";
 
 export const footerLinks: ContactLinksProps[] = [
   {
-    iconSrc: "assets/pinterest.png",
+    iconSrc: "/assets/pinterest.png",
     info: "#",
     backgroundColor: "bg-white",
   },
   {
-    iconSrc: "assets/linkedin.png",
+    iconSrc: "/assets/linkedin.png",
     info: "#",
     backgroundColor: "bg-white",
   },
   {
-    iconSrc: "assets/twitter.png",
+    iconSrc: "/assets/twitter.png",
     info: "#",
     backgroundColor: "bg-white",
   },
   {
-    iconSrc: "assets/whatsapp.png",
+    iconSrc: "/assets/whatsapp.png",
     info: "https://wa.me/920019936",
     backgroundColor: "bg-white",
   },
   {
-    iconSrc: "assets/facebook.png",
+    iconSrc: "/assets/facebook.png",
     info: "#",
     backgroundColor: "bg-white",
   },

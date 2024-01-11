@@ -51,15 +51,13 @@ export const SliderThumbs = ({ projectImages }: SliderThumbsProps) => {
       >
         {projectImages.map((img) => {
           return (
-            <>
-              <SwiperSlide key={img.id} className="w-full h-[79rem]">
+              <SwiperSlide key={img.id} className="w-full">
                 <img
                   className="w-full"
                   src={baseURL + img.attributes.url}
                   alt="slide-img"
                 />
               </SwiperSlide>
-            </>
           );
         })}
       </Swiper>
@@ -96,7 +94,7 @@ export const SliderThumbs = ({ projectImages }: SliderThumbsProps) => {
               <SwiperSlide key={img.id} className="w-[20%]">
                 <img
                   src={baseURL + img.attributes.url}
-                  className="h-[7rem] rounded-xl"
+                  className="h-[7rem] rounded-xl w-full"
                   alt="slide-img"
                 />
               </SwiperSlide>
