@@ -17,7 +17,7 @@ export const About = () => {
         <meta name="description" content="تعريف بوان الرحاب العقارية" />
       </Helmet>
       {/**HEADER */}
-      <Navbar pageName="عن بوان" />
+      <Navbar />
       <IntroSection
         title={aboutPage.title}
         txt={aboutPage.txt}

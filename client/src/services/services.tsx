@@ -1,14 +1,11 @@
-import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { NavigationContext } from "../shared/components/navbar/store/context-navigation";
 import { IntroSection } from "../shared/components/intro-section/intro-section";
 import { Navbar } from "../shared/components/navbar/navbar";
 import { SectionInfo } from "../shared/components/section-info/section-info";
-import { MoreBtn } from "../shared/components/more-btn/more-btn";
-import { servicesInfo } from "../home/home.constants";
 import { Footer } from "../shared/components/footer/footer";
 import { ServiceItems } from "./service-items/service-items";
 import { servicesPage } from "./services.constants";
+import { servicesInfo } from "../home/home.constants";
 
 export const Services = () => {
   return (
@@ -18,7 +15,7 @@ export const Services = () => {
         <meta name="description" content="خدمات بوان الرحاب العقارية " />
       </Helmet>
       {/**HEADER */}
-      <Navbar pageName="خدماتنا" />
+      <Navbar />
       <IntroSection
         title={servicesPage.title}
         txt={servicesPage.txt}

@@ -1,28 +1,27 @@
+import { useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 import { Helmet } from "react-helmet-async";
+import Masonry from "react-layout-masonry";
+import { request } from "../api/axiox-util";
+import { StrapiError } from "../api/models/strapi-error";
+import { StrapiWrapper } from "../api/models/strapi-wrapper";
+import { ProjectDetailsProps } from "../projects/models/project-data.model";
+import { ProjectInfo } from "../projects/project-info/project-info";
+import { EmptyData } from "../shared/components/empty-data/empty-data";
+import { ErrorMessage } from "../shared/components/error-message/error-message";
+import { Footer } from "../shared/components/footer/footer";
+import { Loading } from "../shared/components/loading/loading";
 import { MoreBtn } from "../shared/components/more-btn/more-btn";
+import { Navbar } from "../shared/components/navbar/navbar";
 import { SectionInfo } from "../shared/components/section-info/section-info";
+import { SliderNavigation } from "../shared/components/slide-navigation/slider-navigation";
 import {
   aboutInfo,
-  projectContent,
   projectsInfo,
   servicesInfo,
-  successPartner,
+  successPartner
 } from "./home.constants";
-import { SliderNavigation } from "../shared/components/slide-navigation/slider-navigation";
 import { SliderPagination } from "./slider-pagination/slider-pagination";
-import { Footer } from "../shared/components/footer/footer";
-import { ProjectInfo } from "./project-info/project-info";
-import { Navbar } from "../shared/components/navbar/navbar";
-import { Loading } from "../shared/components/loading/loading";
-import { ErrorMessage } from "../shared/components/error-message/error-message";
-import { EmptyData } from "../shared/components/empty-data/empty-data";
-import { StrapiError } from "../api/models/strapi-error";
-import { AxiosResponse } from "axios";
-import { StrapiWrapper } from "../api/models/strapi-wrapper";
-import { request } from "../api/axiox-util";
-import { ProjectDetailsProps } from "../projects/models/project-data.model";
-import { useQuery } from "@tanstack/react-query";
-import Masonry from "react-layout-masonry";
 
 export const Home = () => {
   const {
@@ -51,7 +50,7 @@ export const Home = () => {
       </Helmet>
       {/* HEADER */}
       <SliderNavigation />
-      <Navbar pageName="الرئيسية" />
+      <Navbar />
 
       {/*ABOUT*/}
       <div className="w-[95%] max-w-[112.8rem] mb-[12rem]  mx-auto lg:grid grid-cols-2 gap-1 block">

@@ -1,4 +1,4 @@
-import { ProjectDetails } from "./project-info/project-info";
+import { ProjectDetails } from "../projects/project-info/project-info";
 
 export const aboutInfo = {
   title: "بوان الرحاب العقارية",

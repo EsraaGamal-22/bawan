@@ -14,3 +14,15 @@ body {
 }
 
 
+.partners-swiper .swiper-wrapper{
+  align-items: center
+}
+
+.swiper-slide-visible{
+  border: 3px solid transparent;
+  border-radius: 0.75rem;
+  overflow: hidden
+}
+.swiper-slide-thumb-active{
+  border-color: #00195B;
+}

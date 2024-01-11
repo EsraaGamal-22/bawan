@@ -1,6 +1,6 @@
-import { navbarInfoProps } from "./nabar.module";
+import { NavbarItem } from "./navbar.module";
 
-export const navbarInfo: navbarInfoProps[] = [
+export const navbarInfo: NavbarItem[] = [
   {
     name: "الرئيسية",
     navLink: "/",
